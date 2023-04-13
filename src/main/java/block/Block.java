@@ -17,7 +17,7 @@ public class Block {
 
     public void calculateHash() {
         String dataToHash = String.format("%d%s%s%d", id, prevHash, data, nonce);
-        // TODO: Calculate and set hash with SHA-256
+        hash = BlockUtils.sha256HexHash(dataToHash);
     }
 
     public void incrementNonce() {
