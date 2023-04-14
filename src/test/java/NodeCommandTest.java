@@ -9,9 +9,9 @@ public class NodeCommandTest {
 
     @Test  // Test if arguments are parsed correctly: nodes start, exchange and don't shut down prematurely
     public void mainTest() throws InterruptedException {
-        String[] args0 = {"-p", "9020", "-n", "9021", "-n", "9022", "-g"};
-        String[] args1 = {"-p", "9021", "-n", "9020", "-n", "9022"};
-        String[] args2 = {"-p", "9022", "-n", "9020", "-n", "9021"};
+        String[] args0 = {"-p", "8080", "-n", "8081", "-n", "8082", "-g"};
+        String[] args1 = {"-p", "8081", "-n", "8080", "-n", "8082"};
+        String[] args2 = {"-p", "8082", "-n", "8080", "-n", "8081"};
 
         ExecutorService executor = Executors.newFixedThreadPool(3);
         executor.execute(() -> NodeCommand.main(args2));
