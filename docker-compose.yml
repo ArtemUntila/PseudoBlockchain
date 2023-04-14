@@ -1,0 +1,29 @@
+version: "2.17.2"
+
+services:
+  node-8080:
+    image: pseudo-blockchain
+    container_name: node-8080
+    command: -p 8080 -n 8081 -n 8082 -g
+    ports:
+      - 8080:8080
+    network_mode: host
+    depends_on:  # Make sure genesis is generated, when 2 slave nodes are waiting for it
+      - node-8081
+      - node-8082
+
+  node-8081:
+    image: pseudo-blockchain
+    container_name: node-8081
+    command: -p 8081 -n 8080 -n 8082
+    ports:
+      - 8081:8081
+    network_mode: host
+
+  node-8082:
+    image: pseudo-blockchain
+    container_name: node-8082
+    command: -p 8082 -n 8080 -n 8081
+    ports:
+      - 8082:8082
+    network_mode: host
